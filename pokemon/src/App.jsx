@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
+
+
 export default function App() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+  const [infoPokemon, setInfoPokemon] = useState("")
+
+  const obtenerPokemon = () => {
+
+    const id = Math.floor(Math.random() * 150) + 1
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setInfoPokemon(data)
+      })
+  }
+  useEffect(() => {
+    obtenerPokemon()
+  }, [])
 }
