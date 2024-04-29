@@ -5,6 +5,37 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <div class="flex m-4 gap-10">
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+    </div>
+    <div class="flex m-4 gap-10">
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+    </div>
+    <div class="flex m-4 gap-10">
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+    </div>
+    <div class="flex m-4 gap-10">
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+      <App />
+    </div>
   </React.StrictMode>,
 )

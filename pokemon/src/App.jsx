@@ -44,7 +44,7 @@ export default function App() {
               <p className="text-gray-500">Defense</p>
             </div>
           </div>
-          <button onClick={getPokemon} className="w-40 h-7 bg-red-400 my-3">generar pokemon</button>
+          <button onClick={getPokemon} className="w-40 h-7 bg-green-300 my-3">generar pokemon</button>
         </div>
       )}
     </>
