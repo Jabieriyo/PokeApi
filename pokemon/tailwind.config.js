@@ -13,6 +13,10 @@ export default {
           'dark-grayish-blue': 'hsl(227, 10%, 46%)',
           'dark-gray': 'hsl(0, 0%, 59%)',
         }
+      },
+      backgroundImage: {
+        'fondo-tarjeta': "url('.\src\img\bg-pattern-card.svg')",
+        'fondo': "url('.\src\img\bg-pattern-bottom.svg')"
       }
     },
   },
