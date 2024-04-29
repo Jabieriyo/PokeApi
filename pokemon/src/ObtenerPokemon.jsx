@@ -1,4 +1,4 @@
 export const obtenerPokemon = () => {
-    const id = Math.floor(Math.random() * 1025) + 1
+    const id = Math.floor(Math.random() * 150) + 1
     return id;
 }

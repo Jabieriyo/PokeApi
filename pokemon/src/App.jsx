@@ -21,7 +21,7 @@ export default function App() {
         <div className="bg-white flex flex-col items-center rounded-lg relative z-10 overflow-hidden w-75 h-75">
           <img src=".\src\img\bg-pattern-card.svg" className="absolute top-0  -z-10" />
           <div className="overflow-hidden  w-52 h-52 bg-white rounded-full">
-            <img className="w-full h-full" src={pokemon?.sprites.other.showdown.front_default} alt="pokemon"></img>
+            <img className="w-full h-full" src={pokemon?.sprites.other.dream_world.front_default} alt="pokemon"></img>
           </div>
           <div className="flex mx-auto items-center">
             <p className="font-bold">{pokemon?.name} </p>
