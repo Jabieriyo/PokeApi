@@ -30,7 +30,6 @@ export default function PokemonCard() {
         asignarPokemon();
     }, []);
 
-    console.log(pokemon)
     return (
         <>
             {pokemon && (
