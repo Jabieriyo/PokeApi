@@ -5,12 +5,14 @@ export default function PokemonCard() {
     const [id, setId] = useState(null);
     const [pokemon, setPokemon] = useState(null);
     const [cargando, setCargando] = useState(false);
+    const [bloquearBoton, setBloquearBoton] = useState(false);
 
     const asignarPokemon = () => {
         setId(obtenerIdAleatorio());
     };
 
     //---> Funciona bien, pero cambia la forma del fetch y utiliza el then para contatenar el siguiente paso con "data"
+    //hecho
     const getPokemon = async () => {
         setCargando(true)
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -18,8 +20,17 @@ export default function PokemonCard() {
             .then(res => {
                 setPokemon(res)
                 setCargando(false)
+
+                setTimeout(() => {
+                    setBloquearBoton(false);
+                }, 3000);
             })
 
+    };
+
+    const handleClick = () => {
+        setBloquearBoton(true);
+        asignarPokemon();
     };
 
     useEffect(() => {
@@ -31,12 +42,12 @@ export default function PokemonCard() {
     }, [id])
 
 
-    //---> Este  useEffect sobra, con el que tienes arriba es suficiente, busca la forma de quitar este
-    //Llamada a asignarPokemon fuera del useEffect
+
 
 
 
     // ---> Colocar un spinner en el boton para indicar que se esta haciendo la peticion y lo deshabilitas mientras cargan los datos
+    //hecho
     // ---> La imagen en la parte superior toca el borde
     //hecho
     // ---> El nombre del pokemon esta en minuscula, no tiene separacion con el siguiente texto
@@ -53,12 +64,11 @@ export default function PokemonCard() {
                         )}
                     </div>
                     <div className="flex mx-auto items-center mt-2">
-                        <p className="font-bold">{pokemon?.name} </p>
+                        <p className="font-bold">{pokemon?.name.charAt(0).toUpperCase() + pokemon?.name.slice(1)} &nbsp;</p>
                         <p className="text-gray-400">{pokemon?.stats[0].base_stat}hp</p>
                     </div>
-                    {/* <div> Este div lo puedes quitar */}
+
                     <p className="text-gray-400 mb-4">{pokemon?.base_experience} exp</p>
-                    {/* </div> */}
                     <div className="flex border-t border-gray-400 text-sm mb-2  pt-2">
                         <div className="mx-3 text-center">
                             <p className="font-bold">{pokemon?.stats[1].base_stat}k</p>
@@ -73,7 +83,12 @@ export default function PokemonCard() {
                             <p className="text-gray-500">Defense</p>
                         </div>
                     </div>
-                    <button onClick={asignarPokemon} className="w-40 h-7 bg-green-300 mb-3">generar pokemon</button>
+                    <button
+                        onClick={handleClick}
+                        className={`w-40 h-7 mb-3 ${bloquearBoton ? 'bg-red-300' : 'bg-green-300'}`}
+                    >
+                        {bloquearBoton ? 'Cargando...' : 'Generar Pokémon'}
+                    </button>
                 </div>
             )}
         </>
