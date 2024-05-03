@@ -10,6 +10,7 @@ export default function PokemonCard() {
         setId(obtenerPokemon())
     }
 
+    //---> Funciona bien, pero cambia la forma del fetch y utiliza el then para contatenar el siguiente paso con "data"
     const getPokemon = async () => {
         setCargando(true)
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -25,11 +26,17 @@ export default function PokemonCard() {
         }
     }, [id]);
 
+
+    //---> Este  useEffect sobra, con el que tienes arriba es suficiente, busca la forma de quitar este
     //Llamada a asignarPokemon fuera del useEffect
     useEffect(() => {
         asignarPokemon();
     }, []);
 
+
+    // ---> Colocar un spinner en el boton para indicar que se esta haciendo la peticion y lo deshabilitas mientras cargan los datos
+    // ---> La imagen en la parte superior toca el borde
+    // ---> El nombre del pokemon esta en minuscula, no tiene separacion con el siguiente texto
     return (
         <>
             {pokemon && (
@@ -46,9 +53,9 @@ export default function PokemonCard() {
                         <p className="font-bold">{pokemon?.name} </p>
                         <p className="text-gray-400">{pokemon?.stats[0].base_stat}hp</p>
                     </div>
-                    <div>
-                        <p className="text-gray-400 mb-4">{pokemon?.base_experience} exp</p>
-                    </div>
+                    {/* <div> Este div lo puedes quitar */}
+                    <p className="text-gray-400 mb-4">{pokemon?.base_experience} exp</p>
+                    {/* </div> */}
                     <div className="flex border-t border-gray-400 text-sm mb-2 pt-2">
                         <div className="mx-3 text-center">
                             <p className="font-bold">{pokemon?.stats[1].base_stat}k</p>
