@@ -5,7 +5,6 @@ export default function PokemonCard() {
     const [id, setId] = useState(null);
     const [pokemon, setPokemon] = useState(null);
     const [cargando, setCargando] = useState(false);
-    const [bloquearBoton, setBloquearBoton] = useState(false);
 
     const asignarPokemon = () => {
         setId(obtenerIdAleatorio());
@@ -20,16 +19,11 @@ export default function PokemonCard() {
             .then(res => {
                 setPokemon(res)
                 setCargando(false)
-
-                setTimeout(() => {
-                    setBloquearBoton(false);
-                }, 3000);
             })
 
     };
 
     const handleClick = () => {
-        setBloquearBoton(true);
         asignarPokemon();
     };
 
@@ -43,14 +37,6 @@ export default function PokemonCard() {
 
 
 
-
-
-
-    // ---> Colocar un spinner en el boton para indicar que se esta haciendo la peticion y lo deshabilitas mientras cargan los datos
-    //hecho
-    // ---> La imagen en la parte superior toca el borde
-    //hecho
-    // ---> El nombre del pokemon esta en minuscula, no tiene separacion con el siguiente texto
     return (
         <>
             {pokemon && (
@@ -85,9 +71,10 @@ export default function PokemonCard() {
                     </div>
                     <button
                         onClick={handleClick}
-                        className={`w-40 h-7 mb-3 ${bloquearBoton ? 'bg-red-300' : 'bg-green-300'}`}
+                        disabled={cargando}
+                        className={`w-40 h-7 mb-3 ${cargando ? 'bg-red-300' : 'bg-green-300'}`}
                     >
-                        {bloquearBoton ? 'Cargando...' : 'Generar Pokémon'}
+                        {cargando ? 'Cargando...' : 'Generar Pokémon'}
                     </button>
                 </div>
             )}
